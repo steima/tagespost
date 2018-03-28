@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>at.demanda.lib</groupId>
 	<artifactId>tagespost</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Tages-Post.at Integration</name>
 	<description>Integration library which allows Java applications to send letters through tages-post.at, a service provided by the Austrian Post AG.</description>
 
