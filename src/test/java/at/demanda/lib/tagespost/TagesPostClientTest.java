@@ -25,13 +25,13 @@ public class TagesPostClientTest {
 	@Test
 	public void testClientConnection() throws IOException, JSchException, SftpException {
 		logger.info("Testing upload to private SCP server");
-		TagesPostClient.send("p_postAt_sftpin-demanda", "/Users/matthias/Desktop/tages-post.key", new TagesPostFile(Approval.ManualApproval, "mahnung.pdf"), new FileInputStream("/Users/matthias/Desktop/invoice-196.pdf"));
+		TagesPostClient.send("p_postAt_sftpin-demanda", "/Users/matthias/Desktop/tages-post.key", new TagesPostJobSettings(Approval.ManualApproval, "mahnung.pdf"), new FileInputStream("/Users/matthias/Desktop/invoice-196.pdf"));
 	}
 	
 	@Test
 	public void testTagesPostFile() {
 		String filename = "mahnung.pdf";
-		TagesPostFile f = new TagesPostFile(Approval.ManualApproval, filename);
+		TagesPostJobSettings f = new TagesPostJobSettings(Approval.ManualApproval, filename);
 		String expected = "000000000000000-mahnung.pdf";
 		String actual = f.generateFilename();
 		assertEquals(expected, actual);
@@ -40,7 +40,7 @@ public class TagesPostClientTest {
 	@Test
 	public void testTagesPostFileWithUmlauts() {
 		String filename = "mahnung-Österreicher.pdf";
-		TagesPostFile f = new TagesPostFile(Approval.ManualApproval, filename);
+		TagesPostJobSettings f = new TagesPostJobSettings(Approval.ManualApproval, filename);
 		String expected = "000000000000000-mahnung__sterreicher.pdf";
 		String actual = f.generateFilename();
 		assertEquals(expected, actual);
@@ -49,7 +49,7 @@ public class TagesPostClientTest {
 	@Test
 	public void testTagesPostFileWithUmlautsColorDuplexNationalRegisteredNoLogo() {
 		String filename = "mahnung-Österreicher.pdf";
-		TagesPostFile f = new TagesPostFile(Approval.ManualApproval, ColorPrint.Color, DuplexPrint.Duplex, DeliveryType.NationalRegistered, EnvelopeLogo.No, filename);
+		TagesPostJobSettings f = new TagesPostJobSettings(Approval.ManualApproval, ColorPrint.Color, DuplexPrint.Duplex, DeliveryType.NationalRegistered, EnvelopeLogo.No, filename);
 		String expected = "001100100000000-mahnung__sterreicher.pdf";
 		String actual = f.generateFilename();
 		assertEquals(expected, actual);

@@ -18,7 +18,7 @@ import at.demanda.lib.tagespost.enums.PaperFormat;
  * 
  * @author matthias
  */
-public class TagesPostFile {
+public class TagesPostJobSettings {
 
 	public static final int APPROVAL = 0;
 	public static final int PAPER_FORMAT = 1;
@@ -50,7 +50,7 @@ public class TagesPostFile {
 	private final String originalFilename;
 
 	/**
-	 * Constructs a {@link TagesPostFile} with all the possible print instructions
+	 * Constructs a {@link TagesPostJobSettings} with all the possible print instructions
 	 * as parameter.
 	 * 
 	 * @param approval
@@ -63,7 +63,7 @@ public class TagesPostFile {
 	 * @param envelopeLogo
 	 * @param originalFilename
 	 */
-	public TagesPostFile(Approval approval, PaperFormat paperFormat, ColorPrint colorPrint, DuplexPrint duplexPrint,
+	public TagesPostJobSettings(Approval approval, PaperFormat paperFormat, ColorPrint colorPrint, DuplexPrint duplexPrint,
 			EnvelopeSize envelopeSize, Orientation orientation, DeliveryType deliveryType, EnvelopeLogo envelopeLogo,
 			String originalFilename) {
 		this.approval = approval;
@@ -89,20 +89,20 @@ public class TagesPostFile {
 	 * @param envelopeLogo
 	 * @param originalFilename
 	 */
-	public TagesPostFile(Approval approval, ColorPrint colorPrint, DuplexPrint duplexPrint, DeliveryType deliveryType,
+	public TagesPostJobSettings(Approval approval, ColorPrint colorPrint, DuplexPrint duplexPrint, DeliveryType deliveryType,
 			EnvelopeLogo envelopeLogo, String originalFilename) {
 		this(approval, PaperFormat.DIN_A4, colorPrint, duplexPrint, EnvelopeSize.DIN_C5, Orientation.Portrait,
 				deliveryType, envelopeLogo, originalFilename);
 	}
 
 	/**
-	 * This constructor builds a {@link TagesPostFile} with default options for most
+	 * This constructor builds a {@link TagesPostJobSettings} with default options for most
 	 * print instructions.
 	 * 
 	 * @param approval
 	 * @param originalFilename
 	 */
-	public TagesPostFile(Approval approval, String originalFilename) {
+	public TagesPostJobSettings(Approval approval, String originalFilename) {
 		this(approval, ColorPrint.BlackAndWhite, DuplexPrint.Simplex, DeliveryType.National, EnvelopeLogo.No,
 				originalFilename);
 	}
