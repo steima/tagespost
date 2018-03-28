@@ -46,6 +46,14 @@ With the [jitpack.io](https://jitpack.io) repository in place you can then add t
 
 Please refer to [jitpack.io](https://jitpack.io) for other dependency management systems.
 
+### JAR or Cloning the Repository
+
+Additional to adding the JAR or code of this project to your project you will also need the following dependencies on your classpath:
+
+ * jsch 0.1.54
+ * slf4j-api 1.7.25 (and a logger implementation)
+ * commons-io 2.6
+
 ### Using the Library
 
 There are three things necessary to successfully upload and process a PDF document with [tages-post.at](https://www.tages-post.at).
