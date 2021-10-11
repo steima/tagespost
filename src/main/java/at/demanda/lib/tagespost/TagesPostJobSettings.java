@@ -15,7 +15,7 @@ import at.demanda.lib.tagespost.enums.PaperFormat;
  * Allows to configure the filename for a tages-post.at upload, the filename has
  * print instructions encoded and must follow the specification provided by
  * tages-post.at
- * 
+ *
  * @author matthias
  */
 public class TagesPostJobSettings {
@@ -35,7 +35,7 @@ public class TagesPostJobSettings {
 	public static final int RESERVED_FIELD_12 = 12;
 	public static final int RESERVED_FIELD_13 = 13;
 	public static final int RESERVED_FIELD_14 = 14;
-	
+
 	private final String ALLOWED_FILENAME_CHARS = "[^a-zA-Z0-9_]";
 
 	private final Approval approval;
@@ -52,7 +52,7 @@ public class TagesPostJobSettings {
 	/**
 	 * Constructs a {@link TagesPostJobSettings} with all the possible print instructions
 	 * as parameter.
-	 * 
+	 *
 	 * @param approval
 	 * @param paperFormat
 	 * @param colorPrint
@@ -81,7 +81,7 @@ public class TagesPostJobSettings {
 	 * Some of the print instructions are in fact not optional because currently
 	 * there is only a single option allowed. This constructor hides the single
 	 * option flags from the developer.
-	 * 
+	 *
 	 * @param approval
 	 * @param colorPrint
 	 * @param duplexPrint
@@ -98,7 +98,7 @@ public class TagesPostJobSettings {
 	/**
 	 * This constructor builds a {@link TagesPostJobSettings} with default options for most
 	 * print instructions.
-	 * 
+	 *
 	 * @param approval
 	 * @param originalFilename
 	 */
@@ -106,7 +106,7 @@ public class TagesPostJobSettings {
 		this(approval, ColorPrint.BlackAndWhite, DuplexPrint.Simplex, DeliveryType.National, EnvelopeLogo.No,
 				originalFilename);
 	}
-	
+
 	public String generateCodeSection() {
 		int[] codes = new int[15];
 		codes[APPROVAL] = this.approval.ordinal();
@@ -126,7 +126,7 @@ public class TagesPostJobSettings {
 		codes[RESERVED_FIELD_14] = 0;
 		return Arrays.stream(codes).mapToObj(c -> String.format("%d", c)).reduce((a, b) -> a.concat(b)).get();
 	}
-	
+
 	public String generateFileSection() {
 		String filename = this.originalFilename.toLowerCase();
 		if(filename.endsWith(".pdf")) {
@@ -135,9 +135,9 @@ public class TagesPostJobSettings {
 		filename = filename.replaceAll(ALLOWED_FILENAME_CHARS, "_");
 		return String.format("%s.pdf", filename);
 	}
-	
+
 	public String generateFilename() {
-		return String.format("%s-%s", this.generateCodeSection(), this.generateFileSection());
+		return String.format("in/bulk_tp/%s-%s", this.generateCodeSection(), this.generateFileSection());
 	}
 
 }
